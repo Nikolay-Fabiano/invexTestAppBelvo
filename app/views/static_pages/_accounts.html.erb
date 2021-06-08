@@ -1,0 +1,38 @@
+<div class="jumbotron">
+  <h2>Accounts</h2>
+  <% @owners_with_accounts.each do |owner| %>
+    <table class="table table-dark">
+      <thead>
+        <tr>
+          <th><%= owner["display_name"] %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= owner["email"] %></td>
+          <td><%= owner["address"] %></td>
+        </tr>
+      </tbody>
+    </table>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Public Data</th>
+          <th scope="col">Current Balance</th>
+          <th scope="col">Currency</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% owner["accounts"].each do |account| %>
+          <tr>
+            <td><%= account["name"] %></td>
+            <td><%= "#{account["public_identification_name"]} - #{account["public_identification_value"]}" %></td>
+            <td><%= account["balance"]["current"] %></td>
+            <td><%= account["currency"] %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>

@@ -1,0 +1,42 @@
+<div id="belvo">
+  <div class="card">
+    <div class="card-body">
+      <%= hidden_field_tag(:access_token, @token["access"]) %>
+      <input type="button" name="" value="Open Widget" onclick="openBelvoWidget()" class="btn btn-lg btn-success">
+      <div id="data-buttons">
+        <div class="form-group">
+          <%= text_field_tag(:link_id, nil, disabled: "disabled", class: "form-control") %>
+        </div>
+        <a href="/" id="account_path" class="btn btn-primary">Account Data</a>
+        <%= link_to "Dashboard", dashboard_path, class: "btn btn-secondary" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  var access_token = document.getElementById('access_token').value;
+  var buttons = document.getElementById('data-buttons');
+  var account_path = document.getElementById('account_path');
+
+  if (!link_id.value) {
+    buttons.style.display = "none";
+  }
+
+  function successCallbackFunction (link_id, institution) {
+   document.getElementById("link_id").value = link_id;
+   account_path.href = "account/" + link_id;
+   buttons.style.display = "";
+  }
+  function openBelvoWidget() {
+    belvoSDK.createWidget(access_token, {
+      locale: "en",
+      company_name: "Janee Corp",
+      country_codes: ["MX"],
+      callback: (link, institution) => this.successCallbackFunction(link, institution),
+      onExit: (data) => this.onExitCallbackFunction(data),
+      onEvent: (data) => this.onEventCallbackFunction(data)
+    }).build();
+  }
+
+</script>

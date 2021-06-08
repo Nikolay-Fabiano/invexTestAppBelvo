@@ -1,0 +1,23 @@
+<div class="jumbotron">
+  <h2>Account Data</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Public Data</th>
+          <th scope="col">Current Balance</th>
+          <th scope="col">Currency</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @account.each do |account| %>
+          <tr>
+            <td><%= account["name"] %></td>
+            <td><%= "#{account["public_identification_name"]} - #{account["public_identification_value"]}" %></td>
+            <td><%= account["balance"]["current"] %></td>
+            <td><%= account["currency"] %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+</div>

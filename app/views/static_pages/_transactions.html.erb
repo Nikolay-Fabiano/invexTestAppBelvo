@@ -1,0 +1,43 @@
+<div class="card">
+  <div class="class-body">
+    <h2 class="card-title">Transactions</h2>
+    <!-- <div class="col-md-12">
+      <%= date_field_tag(@transactions_dates['date_from']) %>
+      <%= date_field_tag(@transactions_dates['date_to']) %>
+    </div> -->
+    <%= column_chart @chart_transactions %>
+  </div>
+</div>
+
+<div class="card">
+  <div class="class-body">
+    <h3 class="card-title">Last Month Transactions</h3>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Account Data</th>
+          <th scope="col">Type</th>
+          <th scope="col">Reference</th>
+          <th scope="col">Date</th>
+          <th scope="col">Amount</th>
+          <th scope="col">Currency</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @transactions.each do |transaction| %>
+          <tr>
+            <td>
+              <%= "#{transaction["account"]["name"]} - #{transaction["account"]["category"]}" %>
+            </td>
+            <td><%= transaction["type"] %></td>
+            <td><%= transaction["reference"] %></td>
+            <td><%= transaction["value_date"] %></td>
+            <td><%= transaction["amount"] %></td>
+            <td><%= transaction["currency"] %></td>
+            <td><%= transaction["status"] %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+</div>
